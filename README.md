@@ -41,3 +41,14 @@ Jogo da memória com Javascript
 
 * A princípio o gameOver vai ter display none, vamos mudar para flex quando estivermos montando a lógica do jogo
     - flex-direction: column; um em baixo do outro
+
+## Montando o estilo do tabuleiro
+
+* O tabuleiro terá 20 cartas, então vamos criar uma div com o id tabuleiro, e colocar 20 cartas para montar o tabuleiro, posteriorment vamos montar com javascript e não com html
+
+* Usar display flex no body para centralizar o tabuleiro
+
+* usar grid para organizar as cartas, tipo uma tabela com 4 colunas e 5 linhas
+* usar gap para dar um espaçamento entre as cartas
+* o tabuleiro ainda não vai estar centralizado verticalmente, pois o body não tem 100% de altura
+    - height: 100vh;
