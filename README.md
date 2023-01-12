@@ -1,7 +1,7 @@
 # Memory-Game-JS
 Jogo da memória com Javascript
 
-# Primeiro passa, criando a estrutura das cartas
+# Primeiro passo, criando a estrutura das cartas
 
 * A princípio a carta vai ser criado com html para posteriormete ser criada pelo Javascript
 * o <data-icon> vai representar a imagem do card e vaiser usado para comparar uma carta com a outra
@@ -31,3 +31,13 @@ Jogo da memória com Javascript
 
 * agora aplicar um transition, para que quando a carta flipar ter uma animação
     - transition: transform .5s;
+
+## Montando a tela de Game Over
+
+* Tela de game over é bem simples, vai ter o container dela o texto e o botão
+ - o botão vai ter o evento onclick para reiciciar o jogo
+ - vai ter position absolute
+ - top 0 para cobrir tudo
+
+* A princípio o gameOver vai ter display none, vamos mudar para flex quando estivermos montando a lógica do jogo
+    - flex-direction: column; um em baixo do outro

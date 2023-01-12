@@ -1,5 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    /* font do google fonts */
     font-family: 'Righteous', sans-serif;
 }
 
@@ -37,4 +42,28 @@ body {
     color: #101c2c;
     background-color: #05c3ff;
     font-size: 30px;
+}
+
+#gameOver {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    background-color: rgba(0, 0, 0, 0.894);
+}
+
+#restart {
+    padding: 20px;
+    background-color: yellow;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    margin-top: 15px;
 }
