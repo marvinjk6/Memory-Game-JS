@@ -71,4 +71,18 @@ Jogo da memória com Javascript
         - nesse caso era um array que continha um array com dois objetos, esse array foi desmembrado e cada objeto foi separado
     - createIdWithTech(tech) gera um id randômico 
 
+## Embaralhando as cartas
 
+* O flatMap gerou cartas que estão sequencia então o par seria a do lado, a gente precisa embralhar as cartas
+* cards vai ser uma variavel global que vai receber null
+* Foi criado a função startGame() que vai receber createCardsFromTechs();
+* foi criado a função shuffleCards() que vai embaralhar cards, vai ser colocada dentro de startGame()
+    - o array está em ordem, a ideia é pegar a ultima carta e trocar de lugar com outra aleatória, fazer isso até não ter mais cartas;
+    - enquanto o currentIndex for diferente de zero
+    
+    - código que faz inverter os valores:
+        *   [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
+    - colocar no console
+        let a = 5
+        let b = 10
+        [a, b] = [b, a]

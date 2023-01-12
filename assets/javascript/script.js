@@ -15,8 +15,29 @@ let techs = [
     'react',
 ];
 
-// chamar a função 
-createCardsFromTechs(techs);
+let cards = null;
+
+startGame();
+
+function startGame() {
+    cards = createCardsFromTechs(techs);
+    shuffleCards(cards);
+    console.log(cards); // vai mostrar tudo embaralhado no console
+}
+
+function shuffleCards(cards) {
+    // current index é o tamanho do array
+    let currentIndex = cards.length;
+    let randomIndex = 0;
+
+    while(currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        //currentIndex vai ser decrementado
+        currentIndex--;
+        // esse código faz inverter os valores
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
+    }
+}
 
 function createCardsFromTechs(techs) {
     // cards começa vazio
@@ -26,10 +47,9 @@ function createCardsFromTechs(techs) {
         // vamos colocar as techs em card - array
         cards.push(createPairFromTechs(tech));
     });
-    console.log(cards);
     // flatMap desmembra o array de pares, 
-    cards.flatMap(pair => pair);
-    console.log(cards.flatMap(pair => pair));
+    return cards.flatMap(pair => pair);
+    console.log(cards.flatMap(pair => pair))
 }
 
 // função que vai gerar os pares de cartas 
