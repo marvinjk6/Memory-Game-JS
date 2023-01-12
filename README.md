@@ -52,3 +52,23 @@ Jogo da memória com Javascript
 * usar gap para dar um espaçamento entre as cartas
 * o tabuleiro ainda não vai estar centralizado verticalmente, pois o body não tem 100% de altura
     - height: 100vh;
+
+## Criando o modelo das cartas no jogo
+
+* Agora vamos usar o javascript para criar o html, criando modelo das cartas.
+* As tecnologias foram colocadas em um array
+* O Modelo vai ter:
+    - icon: representado pelo array de tecnologias, é como icon que vamos fazer o match entre duas cartas;
+    - flipped: false ou true, representando se a carta esta virada ou não;
+    - id: para identificar a carta;
+
+* a Função createCardsFromTechs(techs):
+    - Cards é um array
+    - vamos colocar as tecnologias dentro do array cards
+    - vamos gerar pares de tecnologias com a função createPairFromTechs(tech)
+        - mas não quermos pares, queremos uma carta
+        - a função flatmap retorna um array, mas se os elementos do array também for um array o flatmap desmembra esse array 
+        - nesse caso era um array que continha um array com dois objetos, esse array foi desmembrado e cada objeto foi separado
+    - createIdWithTech(tech) gera um id randômico 
+
+
