@@ -4,34 +4,17 @@ const BACK = 'card_back';
 const CARD = 'card';
 const ICON = 'icon';
 
-let techs = [
-    'bootstrap',
-    'css',
-    'electron',
-    'firebase',
-    'html',
-    'javascript',
-    'jquery',
-    'mongo',
-    'node',
-    'react',
-];
-
-let cards = null;
-
 startGame();
 
 function startGame() {
-    cards = createCardsFromTechs(techs);
-    shuffleCards(cards);
-    initializeCards(cards);
+    initializeCards(game.createCardsFromTechs());
 }
 
 function initializeCards(cards) {
     let gameBoard = document.getElementById('gameBoard');
+    //game.cards.forEach(card => {}
 
     for(let card of cards) {
-
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
         cardElement.classList.add(CARD);
@@ -65,47 +48,9 @@ function createCardFace(face, card, element) {
 
 }
 
-function shuffleCards(cards) {
-    // current index é o tamanho do array
-    let currentIndex = cards.length;
-    let randomIndex = 0;
-
-    while(currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        //currentIndex vai ser decrementado
-        currentIndex--;
-        // esse código faz inverter os valores
-        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
-    }
-}
-
-function createCardsFromTechs(techs) {
-    // cards começa vazio
-    let cards = [];
-
-    techs.forEach(tech => {
-        // vamos colocar as techs em card - array
-        cards.push(createPairFromTechs(tech));
-    });
-    // flatMap desmembra o array de pares, 
-    return cards.flatMap(pair => pair);
-}
-
-// função que vai gerar os pares de cartas 
-function createPairFromTechs(tech) {
-    return [
-        {id: createIdWithTech(tech), icon: tech, flipped: false}, 
-        {id: createIdWithTech(tech),  icon: tech, flipped: false}
-    ];
-}
-
-// função que gera o id, vai concatenar com o Math.random
-function createIdWithTech(tech) {
-    return tech + parseInt(Math.random() * 1000);
-}
-
 // função para virar a carta 
 function flipCard() {
     //o this é o proprio elemento (cardElement)
     this.classList.add('flip');
 }
+

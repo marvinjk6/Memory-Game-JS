@@ -144,3 +144,30 @@ Jogo da memória com Javascript
     
     - Colocar a carta no gameBoard;
         * gameBoard.appendChild(cardElement);
+
+## Separando a View da Lógica 
+
+* O objetivo é separa a lógica do jogo da camada visual pro usuário
+    - o arquivo game.js foi colocado acima do script.js, logo script tem acesso ao game.js mas game não tem acesso ao script
+    - em game.js foi criado o objeto game que terá tudo que for referente ao jogo;
+    - em script.js terá as funções responsáveis pela parte visual.
+
+* As propriedades e métodos do game devem ter o this. antes
+
+* Em script.js agora é preciso chamar as funções como metodos de game, game.createCardsFromTechs
+
+* Alterações
+    - createCardsFromTechs():
+        * Agora createCardsFromTech não recebe nenhum parametro, techs e cards recebem o this;
+        * this.cards = this.cards.flatMap(pair => pair);
+        * shuffleCards() vai ser executada dentro dessa função, embaralhar depois de fazer o flatMap;
+        * depois de embaralhar vai retornar cards;
+    - shuffleCards():
+        * Também não vai receber nenhum parametro, todos os cards vão receber this.cards;
+    - initializeCards():
+        * Agora initializeCards vai executar (game.createCardsFromTechs()),
+        como createCardsFromTechs() retorna cards que é o parametro necessário para initializeCards pode ser feito desse jeito
+        * Obs: se usasse o forEach, precisaria usar  game.cards.forEach(card => {}
+
+
+
