@@ -8,6 +8,8 @@ startGame();
 
 function startGame() {
     initializeCards(game.createCardsFromTechs());
+
+    
 }
 
 function initializeCards(cards) {
@@ -50,7 +52,26 @@ function createCardFace(face, card, element) {
 
 // função para virar a carta 
 function flipCard() {
-    //o this é o proprio elemento (cardElement)
-    this.classList.add('flip');
+    
+    if(game.setCard(this.id)) {
+        this.classList.add('flip');
+        // se deu match com a segunda carta limpar as cartas e lockmode false com clearCards
+        if(game.checkMatch()) {
+            game.clearCards();
+        // se não deu macth
+        } else {
+            // um tempinho para remover a classe flip
+            setTimeout(()=> {
+                // selecionar as cartas pelo id delas
+                let firstCardView = document.getElementById(game.firstCard.id);
+                let secondCardView = document.getElementById(game.secondCard.id);
+                
+                //remover a classe flip
+                firstCardView.classList.remove('flip');
+                secondCardView.classList.remove('flip');
+                game.clearCards();
+            }, 1000);
+        }
+    }
 }
 

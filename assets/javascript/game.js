@@ -1,6 +1,39 @@
 // criado o objeto game, que vai ter tudo que é referente ao jogo
 
 let game = {
+
+    lockMode: false,
+    firstCard: null,
+    secondCard: null,
+
+    setCard(id) {
+        // retorna um array, pegar a primeira carta
+        let card = this.cards.filter(card => card.id === id)[0];
+
+        if(card.flipped || this.lockMode) {
+            return false;
+        }
+
+        if(!this.firstCard) {
+            this.firstCard = card;
+            return true
+        } else {
+            this.secondCard = card;
+            this.lockMode = true;
+            return true;
+        } 
+    },
+
+    checkMatch() {
+        return this.firstCard.icon === this.secondCard.icon;
+    },
+
+    clearCards() {
+        this.firstCard = null;
+        this.secondCard = null;
+        this.lockMode = false;
+    },
+
     techs: [
         'bootstrap',
         'css',

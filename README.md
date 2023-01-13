@@ -169,5 +169,78 @@ Jogo da memória com Javascript
         como createCardsFromTechs() retorna cards que é o parametro necessário para initializeCards pode ser feito desse jeito
         * Obs: se usasse o forEach, precisaria usar  game.cards.forEach(card => {}
 
+## Checando se forma par
+
+* Agora serão definidas algumas regras do jogo
+
+* Primeiro virar duas cartas e checar se elas são iguais, se forem iguais elas permanecem viradas, se forem diferentes depois de um tempo elas viram novamente.
+    - A primeira carta não pode ser a segunda carta, se uma carta estiver virada ela não pode receber o click novamente;
+    - Se selecionou a segunda carta e ainda está checando para ver se ela bate com a primeira, não pode selecionar uma terceira carta;
+        * será criado o lockMode: false, como propriedade do game
+        * para dar tempo de checar e fazer o efeito visual
+    - criar firstCard e secondCard null;
+
+    - Método setCard(), vai receber um id da carta que vai setar
+        * filtrar cards pelo id e pegar o primeiro elemento/carta
+            - let card = this.cards.filter(card => card.id ===id)[0];
+        * verificar se a carta está virada/flipped ou se está em lockMode
+            - if(card.flipped || this.lockMode) {
+                return false;
+            } 
+        * se firstCard for null, ele vai receber o card e retornará true (virada), caso o contrario vou tentar setar a segunda carta e lockMode vai ser true, para não deixar selecionar uma terceira carta sem checkar antes
+            - if(!this.firstCard) {
+                this.firstCard = card;
+                return true
+            } else {
+                this.secondCard = card;
+                this.lockMode = true;
+                return true;
+            } 
+        
+        * na Função flipCard() passar o setCard com o id da carta:
+            - se o jogo encontrar a carta pelo id, virar ela com a classe flip;
+                * if(game.setCard(this.id)){
+                    this.classList.add('flip');
+                }
+             - criar um método para game que vai checkar se as cartas são iguais, o método checkMatch()
+                * vai retornar true se as cartas forem iguais
+                checkMatch() {
+                    return this.firstCard.icon === this.secondCard.icon;
+                }
+               
+            - criar um método para game que vai limpar as cartas e o lockMode voltar para false
+                * clearCards() {
+                    this.firstCard = null;
+                    this.secondCard = null;
+                    this.lockMode = false;
+                }
+
+            - Código completo que vai para flipCard()
+                // se encontrar a carta pelo id, adicionar classe flip 
+            -  if(game.setCard(this.id)) {
+                    this.classList.add('flip');
+                    // se deu match com a segunda carta limpar as cartas e lockmode false com clearCards
+                    if(game.checkMatch()) {
+                        game.clearCards();
+                    // se não deu macth
+                    } else {
+                        // um tempinho para remover a classe flip
+                        setTimeout(()=> {
+                            // selecionar as cartas pelo id delas
+                            let firstCardView = document.getElementById(game.firstCard.id);
+                            let secondCardView = document.getElementById(game.secondCard.id);
+                            
+                            //remover a classe flip
+                            firstCardView.classList.remove('flip');
+                            secondCardView.classList.remove('flip');
+                            game.clearCards();
+                        }, 1000);
+                    }
+                }
+
+           
+           
+
+
 
 
