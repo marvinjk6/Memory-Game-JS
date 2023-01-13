@@ -86,3 +86,61 @@ Jogo da memória com Javascript
         let a = 5
         let b = 10
         [a, b] = [b, a]
+
+## Montando o Tabuleiro
+
+* Agora o objetivo é pegar o modelo de cartas que foi criado e colocar as cartas na tela
+
+* Foi criado a função initializeCards() que vai ser colocada em startgame()
+    - selecionar o #gameBoard(tabuleiro que as cartas vão ficar)
+
+* Agora é preciso criar uma carta visual para cada um dos modelos de carta
+    - cards é um array com as cartas, a ideia é fazer um loop for ou forEach para inserir todas as cartas do array cards;
+        * dessa vez vou fazer com o for; 
+
+    - Agora vamos criar um elemento cardElement que será uma div
+        * let cardElement = document.createElement('div') 
+        * O id do elemento vai receber card.id;
+            - cardElement.id = card.id
+        * Agora adicionar a classe card
+            - cardElement.classList.add('card') ou uma constante CARD = 'card';
+
+    - Para verificar se duas cartas são iguais é preciso saber se os icones são iguais pelo data-icon (data-icon='booststrap' por exemplo)
+        * cardElement.dataset.icon = card.icon;
+
+    - Uma função será responsável por criar de fato o conteúdo de card na tela
+        * createCardContent(card, cardElement), que será chamada dentro de initializeCards() ;
+            - essa função vai receber mais uma função, createCardFace(face, card, element)
+            - face: será a classe representada pelas constantes FRONT e BACK
+            - card: é referente ao objeto card
+            - element: referente ao elemento que será criado
+                * createCardFace(face, card, element):
+                * o primeiro passo é criar um elemento, que será uma div
+                    - let cardElementFace = document.createElement('div')
+                * adicionar a classe nesse elemento (face), que será card_front e card_back
+                    - cardElementFace.classList.add(face);
+                * verificar se face é FRONT ou BACK {if(face == FRONT)};
+                    - se for FRONT vai criar um elemento com uma imagem
+                        * let iconElement = document.createElement('img');
+                        * Adicionar classe no elemento;
+                            - iconElement.classList.add(ICON)  ICON = 'icon';
+                        * colocar o atributo src (a referencia é onde está o documento html)
+                            - iconElement.src = './assets/images/' + card.icon + '.png';
+                        * adicionar iconElement (img) em cardElement (div)
+                            - cardElementFace.appendChild(iconElement);
+                    - se for BACK vai criar um elemento com a representação de maior que / menor que:
+                        * cardElementFace.innerHTML = '&lt/&gt';
+                    - no final da função fora do if adicionar cardElementFace no element
+                        * element.appendChild(cardElementFace);
+
+    - A carta tem a parte da frente e de trás;
+        * para fazer essa movimentação, cardElement precisa ter o evento click que terá a função flipCard, que é responsavel por girar a carta através da adição da classe flip
+            - em initializeCards() 
+                * cardElement.addEventListener('click', flipCard);
+            - o this da função é o próprio elemento(cardElement)
+            - function flipCard() {
+                this.classList.add(flip)
+            }
+    
+    - Colocar a carta no gameBoard;
+        * gameBoard.appendChild(cardElement);
