@@ -76,7 +76,6 @@ body {
 #gameBoard {
     max-width: 700px;
     display: grid;
-    /* 5 linhas / 4 colunas */
     grid-template: 1fr 1fr 1fr 1fr 1fr /  1fr 1fr 1fr 1fr;
     gap: 15px;
 }

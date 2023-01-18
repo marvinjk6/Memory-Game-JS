@@ -1,4 +1,4 @@
-// classes do html
+
 const FRONT = 'card_front';
 const BACK = 'card_back';
 const CARD = 'card';
@@ -12,7 +12,6 @@ function startGame() {
 
 function initializeCards(cards) {
     let gameBoard = document.getElementById('gameBoard');
-    //limpar o tabuleiro
     gameBoard.innerHTML = '';
     for(let card of cards) {
         let cardElement = document.createElement('div');
@@ -48,29 +47,23 @@ function createCardFace(face, card, element) {
 
 }
 
-// função para virar a carta 
 function flipCard() {
     
     if(game.setCard(this.id)) {
 
         this.classList.add('flip');
         if(game.secondCard) {
-            // se deu match com a segunda carta limpar as cartas e lockmode false com clearCards
             if(game.checkMatch()) {
                 game.clearCards();
                 if(game.checkGameOver()) {
                     let gameOverLayer = document.getElementById('gameOver');
                     gameOverLayer.style.display = 'flex';
                 }
-            // se não deu macth
             } else {
-                // um tempinho para remover a classe flip
                 setTimeout(()=> {
-                    // selecionar as cartas pelo id delas
                     let firstCardView = document.getElementById(game.firstCard.id);
                     let secondCardView = document.getElementById(game.secondCard.id);
-                    
-                    //remover a classe flip
+                
                     firstCardView.classList.remove('flip');
                     secondCardView.classList.remove('flip');
                     game.unflipCards();
