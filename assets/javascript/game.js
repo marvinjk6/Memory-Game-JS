@@ -6,6 +6,21 @@ let game = {
     firstCard: null,
     secondCard: null,
 
+    techs: [
+        'bootstrap',
+        'css',
+        'electron',
+        'firebase',
+        'html',
+        'javascript',
+        'jquery',
+        'mongo',
+        'node',
+        'react',
+    ],
+
+    cards: null,
+
     setCard(id) {
         // retorna um array, pegar a primeira carta
         let card = this.cards.filter(card => card.id === id)[0];
@@ -45,20 +60,9 @@ let game = {
         this.clearCards();
     },
 
-    techs: [
-        'bootstrap',
-        'css',
-        'electron',
-        'firebase',
-        'html',
-        'javascript',
-        'jquery',
-        'mongo',
-        'node',
-        'react',
-    ],
-
-    cards: null,
+    checkGameOver() {
+        return this.cards.filter(card => !card.flipped).length == 0; 
+    },
 
     createCardsFromTechs() {
         // cards começa vazio, agora this.cards pois é uma propriedade de game

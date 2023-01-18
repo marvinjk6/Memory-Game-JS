@@ -8,14 +8,12 @@ startGame();
 
 function startGame() {
     initializeCards(game.createCardsFromTechs());
-
-    
 }
 
 function initializeCards(cards) {
     let gameBoard = document.getElementById('gameBoard');
-    //game.cards.forEach(card => {}
-
+    //limpar o tabuleiro
+    gameBoard.innerHTML = '';
     for(let card of cards) {
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
@@ -60,6 +58,10 @@ function flipCard() {
             // se deu match com a segunda carta limpar as cartas e lockmode false com clearCards
             if(game.checkMatch()) {
                 game.clearCards();
+                if(game.checkGameOver()) {
+                    let gameOverLayer = document.getElementById('gameOver');
+                    gameOverLayer.style.display = 'flex';
+                }
             // se não deu macth
             } else {
                 // um tempinho para remover a classe flip
@@ -76,6 +78,12 @@ function flipCard() {
             }
         }
     }
-        
+}
+
+function restart() {
+    game.clearCards();
+    startGame();
+    let gameOverLayer = document.getElementById('gameOver');
+    gameOverLayer.style.display = 'none';
 }
 

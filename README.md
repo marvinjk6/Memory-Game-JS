@@ -253,7 +253,21 @@ Jogo da memória com Javascript
         * para resolver foi criado o método unflipCards(), que vai colocar flipped para false, isso vai acontecer quando virar duas cartas e elas não forem iguais, então essa função vai ter o clearCards;
         * em script.js na função flipCard() substituir o segundo clearCards() por unflipCard;
            
-           
+
+## Finalizando - Game Over
+    
+* O Jogo vai terminar quando todas as cartas estiverem "flipadas", foi criado o método checkGameOver();
+    - esse médodo vai ter um filter, vai filtrar as cartas que não estão flipadas, esse filter vai retornar um array com as cartas não flippadas, quando o length dele for igual a 0 significa que todas as cartas estão flippadas (true).
+    -  em script.js no método flipCard verificar se checkGameOver() virou true, se isso acontecer será mostrado a tela de game over, mudando o display: none para display:flex da div com o id="gameOver";
+
+* Próximo passo é fazer o botão de restart funcionar
+    - foi criada a função restart();
+    - ela vai limpar as cartas;
+    - ter a função startGame();
+    - e mudar o display da div com o id="gameOver" para none;
+
+* na função initializeCards() 
+    - limpar o tabuleiro: gameBoard.innerHTML = '';
 
 
 

@@ -61,7 +61,7 @@ body {
     align-items: center;
     color: white;
     font-size: 50px;
-    background-color: #c7cdd3;
+    background-color: rgba(0, 0, 0, 0.799);
 }
 
 #restart {
