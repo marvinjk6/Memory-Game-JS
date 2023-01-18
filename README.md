@@ -238,6 +238,20 @@ Jogo da memória com Javascript
                     }
                 }
 
+## Achando e corrigindo bugs
+
+* foi colocado console.log(card) no método setCard();
+    - Erro - Uncaught TypeError:  Cannot read properties of null (reading 'icon'), quando clicar em apenas uma carta o secondCard é null
+        * para resolver em game.js foi colocado um if no método checkMatch(), se firstCard ou secondCard forem null, retorna false;
+
+    - Erro - Uncaught TypeError: Cannot read properties of null (reading 'id'), é mais ou menos o mesmo problema, quando clicar em apenas uma carda o secondCard.id ainda é null
+        * para resolver em script.js na função flipCard(), foi adicionado um if, se existir game.secondCard();
+
+    - Erro - Agora se clicar na mesma carta duas vezes e depois em outra carta elas não vão desvirar, pois a propriedade flipped está como true;
+        * para resolver em game.js no método setCard() colocar flipped para true;
+    - Erro - Agora depois que clicar na carta e elas desvirarem o flipped precisa voltar a ser false;
+        * para resolver foi criado o método unflipCards(), que vai colocar flipped para false, isso vai acontecer quando virar duas cartas e elas não forem iguais, então essa função vai ter o clearCards;
+        * em script.js na função flipCard() substituir o segundo clearCards() por unflipCard;
            
            
 
